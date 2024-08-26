@@ -13,11 +13,28 @@ body {
   font-weight: normal;
   font-family: "Inter", sans-serif;
 }
+body img {
+  display: block;
+}
 
-@media screen and (max-width: 320px) {
-  .main-container {
-    background-color: #333;
-  }
+.money-saver-container {
+  width: 80%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+}
+.money-saver-container .logotype {
+  width: 150px;
+  margin: 0 auto;
+}
+.money-saver-container .expense-summary {
+  padding: 1.5rem 0.6rem;
+  background-color: #ffc04f;
+  border-radius: 10px;
+  color: #af6104;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */

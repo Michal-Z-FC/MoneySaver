@@ -8,8 +8,57 @@
       name="description"
       content="MoneySaver to prosta i intuicyjna aplikacja do zarządzania swoimi zarobkami i wydatkami."
     />
-    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <title>MoneySaver 2024</title>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="styles/main.css" />
   </head>
+  <body>
+    <section class="money-saver-container">
+      <img
+        src="images/logo.svg"
+        width="100"
+        alt="Logotyp z pieniądzem oraz napisem MoneySaver"
+        class="logotype"
+      />
+      <div class="expense-summary">Możesz jeszcze wydać 987 złotych</div>
+      <div class="money-saver-content">
+        <div class="amounts-list">
+          <p class="heading">Przychody</p>
+          <div class="inputs-container">
+            <input type="text" placeholder="Pochodzenie przychodu" />
+            <input type="text" placeholder="Kwota" />
+            <button class="add-btn">Dodaj</button>
+          </div>
+          <ul class="list">
+            <li class="list-item">
+              <span class="item-heading">Pensja - 3000 zł</span>
+              <button class="edit-btn">Edytuj</button>
+              <button class="remove-btn">Usuń</button>
+            </li>
+          </ul>
+          <p class="sum-content">
+            Suma przychodów: <span class="sum">5500 zł</span>
+          </p>
+        </div>
+        <div class="amounts-list">
+          <p class="heading">Wydatki</p>
+          <div class="inputs-container">
+            <input type="text" placeholder="Pochodzenie wydatku" />
+            <input type="text" placeholder="Kwota" />
+            <button class="add-btn">Dodaj</button>
+          </div>
+          <ul class="list">
+            <li class="list-item">
+              <span class="item-heading">Pensja - 3000 zł</span>
+              <button class="edit-btn">Edytuj</button>
+              <button class="remove-btn">Usuń</button>
+            </li>
+          </ul>
+          <p class="sum-content">
+            Suma przychodów: <span class="sum">5500 zł</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

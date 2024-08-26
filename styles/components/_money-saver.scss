@@ -1,5 +1,21 @@
-.main-container {
-  @include small-phone {
-    background-color: $main-color;
+.money-saver-container {
+  width: 80%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+
+  .logotype {
+    width: 150px;
+    margin: 0 auto;
+  }
+
+  .expense-summary {
+    padding: 1.5rem 0.6rem;
+    background-color: $special-bg-color;
+    border-radius: 10px;
+    color: $special-font-color;
+    font-size: $small-heading;
+    font-weight: 800;
+    text-align: center;
   }
 }
