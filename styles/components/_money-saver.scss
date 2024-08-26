@@ -1,0 +1,5 @@
+.main-container {
+  @include small-phone {
+    background-color: $main-color;
+  }
+}

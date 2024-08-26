@@ -1,0 +1,35 @@
+@mixin small-phone {
+  @media screen and (max-width: $small-phones) {
+    @content;
+  }
+}
+
+@mixin medium-phone {
+  @media screen and (max-width: $medium-phones) {
+    @content;
+  }
+}
+
+@mixin large-phone {
+  @media screen and (max-width: $large-phones) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media screen and (max-width: $desktop-large) {
+    @content;
+  }
+}
