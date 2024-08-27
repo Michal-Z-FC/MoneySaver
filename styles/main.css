@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -11,30 +11,94 @@
 body {
   font-size: 16px;
   font-weight: normal;
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: #333;
 }
 body img {
   display: block;
 }
 
+.money-saver-body {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, #dce8eb, #dce7ec, #dde6ed, #dee5ed, #dfe4ed);
+}
+
 .money-saver-container {
-  width: 80%;
+  width: 100%;
   max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem;
+  padding: 3.5rem 1rem;
 }
 .money-saver-container .logotype {
-  width: 150px;
-  margin: 0 auto;
+  width: 170px;
+  margin: 0 auto 2rem;
 }
 .money-saver-container .expense-summary {
-  padding: 1.5rem 0.6rem;
-  background-color: #ffc04f;
-  border-radius: 10px;
-  color: #af6104;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #eff2f6;
+  padding: 1.4rem 1.2rem;
+  border-radius: 1rem;
+}
+.money-saver-container .expense-summary .expense-heading {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.money-saver-container .expense-summary .expense-value {
+  font-size: 36px;
+  font-weight: bold;
+  align-self: flex-end;
+}
+.money-saver-container .expense-summary .triangle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0 0 0.6rem 0.6rem;
+}
+.money-saver-container .expense-summary .triangle path {
+  fill: #333;
+}
+.money-saver-container .expense-summary.positive {
+  background-color: #eff8f8;
+}
+.money-saver-container .expense-summary.positive .expense-value {
+  color: #5abab6;
+}
+.money-saver-container .expense-summary.positive .triangle path {
+  fill: #5abab6;
+}
+.money-saver-container .expense-summary.negative {
+  background-color: #fdeff1;
+}
+.money-saver-container .expense-summary.negative .expense-value {
+  color: #ef5a6f;
+}
+.money-saver-container .expense-summary.negative .triangle path {
+  fill: #ef5a6f;
+}
+.money-saver-container .amounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 1rem;
+  background-color: #eff2f6;
+  padding: 1.4rem 1.2rem;
+}
+.money-saver-container .amounts-list .heading {
   font-size: 18px;
-  font-weight: 800;
-  text-align: center;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.css.map */

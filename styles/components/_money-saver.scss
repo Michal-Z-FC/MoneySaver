@@ -1,21 +1,104 @@
+$containers-padding: 1.4rem 1.2rem;
+$containers-borr: 1rem;
+
+.money-saver-body {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, #dce8eb, #dce7ec, #dde6ed, #dee5ed, #dfe4ed);
+}
+
 .money-saver-container {
-  width: 80%;
+  width: 100%;
   max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem;
+  padding: 3.5rem 1rem;
 
   .logotype {
-    width: 150px;
-    margin: 0 auto;
+    width: 170px;
+    margin: 0 auto 2rem;
   }
 
   .expense-summary {
-    padding: 1.5rem 0.6rem;
-    background-color: $special-bg-color;
-    border-radius: 10px;
-    color: $special-font-color;
-    font-size: $small-heading;
-    font-weight: 800;
-    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: #64646f33 0px 7px 29px 0px;
+    background-color: $containers-bg;
+    padding: $containers-padding;
+    border-radius: $containers-borr;
+
+    .expense-heading {
+      font-size: $tiny-heading;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .expense-value {
+      font-size: $large-heading;
+      font-weight: bold;
+      align-self: flex-end;
+    }
+
+    .triangle {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: 0 0 .6rem .6rem;
+
+
+        path {
+            fill: $default-font-color;
+        }   
+    }
+
+    &.positive {
+        background-color: $positive-value-bg;
+
+        .expense-value {
+            color: $positive-value;
+        }
+
+        .triangle {
+            path {
+                fill: $positive-value;
+            }   
+        }
+    }
+
+    &.negative {
+        background-color: $negative-value-bg;
+
+        .expense-value {
+            color: $negative-value;
+        }
+
+        .triangle {
+            path {
+                fill: $negative-value;
+            }   
+        }
+    }
+  }
+
+  .amounts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: #64646f33 0px 7px 29px 0px;
+    border-radius: $containers-borr;
+    background-color: $containers-bg;
+    padding: $containers-padding;
+
+    .heading {
+        font-size: $small-heading;
+        font-weight: 600;
+    }
   }
 }
