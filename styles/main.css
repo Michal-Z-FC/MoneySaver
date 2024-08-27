@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,97 +8,212 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 12px;
+}
+
 body {
-  font-size: 16px;
   font-weight: normal;
-  font-family: "Roboto", sans-serif;
-  color: #333;
+  font-family: "Inter", sans-serif;
+  color: #444;
 }
 body img {
   display: block;
 }
-
-.money-saver-body {
-  width: 100%;
-  min-height: 100vh;
-  background-image: linear-gradient(to bottom, #dce8eb, #dce7ec, #dde6ed, #dee5ed, #dfe4ed);
+body button {
+  cursor: pointer;
 }
 
-.money-saver-container {
+.money-saver-main-container {
   width: 100%;
-  max-width: 960px;
+  min-height: 100vh;
+  background-color: #f2f8ff;
+}
+.money-saver-main-container .logotype {
+  width: 250px;
+  padding: 3rem 0 2rem;
+  margin: 0 auto;
+}
+.money-saver-main-container .money-saver-app {
   display: flex;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 1rem;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin: 0 auto;
-  padding: 3.5rem 1rem;
 }
-.money-saver-container .logotype {
-  width: 170px;
-  margin: 0 auto 2rem;
-}
-.money-saver-container .expense-summary {
+.money-saver-main-container .money-saver-app .savings-content {
   position: relative;
+  display: flex;
   width: 100%;
-  max-width: 320px;
-  display: flex;
+  max-width: 425px;
   flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background-color: #eff2f6;
-  padding: 1.4rem 1.2rem;
-  border-radius: 1rem;
+  gap: 10px;
+  padding: 1.7rem 2.7rem 1.3rem;
+  border-radius: 35px;
+  background-image: linear-gradient(135deg, #378ce7, #81bdff);
+  box-shadow: 0 0 20px 18px rgba(0, 0, 0, 0.0392156863);
 }
-.money-saver-container .expense-summary .expense-heading {
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
+.money-saver-main-container .money-saver-app .savings-content .heading {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #f2f8ff;
 }
-.money-saver-container .expense-summary .expense-value {
-  font-size: 36px;
-  font-weight: bold;
+.money-saver-main-container .money-saver-app .savings-content .value {
   align-self: flex-end;
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: #f2f8ff;
 }
-.money-saver-container .expense-summary .triangle {
+.money-saver-main-container .money-saver-app .savings-content .emojis {
   position: absolute;
+  width: 70px;
+  top: -1.6rem;
+  right: 1rem;
+}
+.money-saver-main-container .money-saver-app .savings-content .emojis .emoji {
+  position: absolute;
+  width: 100%;
+  top: 0;
   left: 0;
-  bottom: 0;
-  margin: 0 0 0.6rem 0.6rem;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
-.money-saver-container .expense-summary .triangle path {
-  fill: #333;
+.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.sad-emoji {
+  opacity: 0;
 }
-.money-saver-container .expense-summary.positive {
-  background-color: #eff8f8;
+.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.sad-emoji.visible {
+  opacity: 1;
 }
-.money-saver-container .expense-summary.positive .expense-value {
-  color: #5abab6;
+.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.smile-emoji {
+  opacity: 0;
 }
-.money-saver-container .expense-summary.positive .triangle path {
-  fill: #5abab6;
+.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.smile-emoji.visible {
+  opacity: 1;
 }
-.money-saver-container .expense-summary.negative {
-  background-color: #fdeff1;
+.money-saver-main-container .money-saver-app .app-element {
+  width: 100%;
+  max-width: 600px;
+  padding: 1.7rem 2rem;
+  border-radius: 35px;
+  box-shadow: 0 0 20px 18px rgba(0, 0, 0, 0.0392156863);
+  background-color: #fff;
 }
-.money-saver-container .expense-summary.negative .expense-value {
-  color: #ef5a6f;
+.money-saver-main-container .money-saver-app .app-element .element-heading {
+  padding-bottom: 1.7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
-.money-saver-container .expense-summary.negative .triangle path {
-  fill: #ef5a6f;
+.money-saver-main-container .money-saver-app .app-element .element-form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.4rem;
 }
-.money-saver-container .amounts-list {
+.money-saver-main-container .money-saver-app .app-element .element-form input {
+  padding: 1.1rem 0.8rem;
+  border: 1px solid #c7c7c7;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  color: #7c7c7c;
+}
+.money-saver-main-container .money-saver-app .app-element .element-form input.name-input {
+  grid-area: 1/1/2/5;
+}
+.money-saver-main-container .money-saver-app .app-element .element-form input.value-input {
+  grid-area: 1/5/2/7;
+}
+.money-saver-main-container .money-saver-app .app-element .element-form .add-to-list-btn {
+  grid-area: 2/1/3/7;
+  padding: 1.1rem 0.8rem;
+  border-radius: 14px;
+  border: 0;
+  font-weight: bold;
+  color: #fff;
+  background-color: #378ce7;
+}
+.money-saver-main-container .money-saver-app .app-element .separator {
+  width: 100%;
+  height: 1px;
+  margin: 1.7rem 0;
+  background-color: #c7c7c7;
+}
+.money-saver-main-container .money-saver-app .app-element .list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 1rem;
-  background-color: #eff2f6;
-  padding: 1.4rem 1.2rem;
+  padding: 0 0.5rem 0.5rem 0;
+  gap: 0.4rem;
+  height: 18rem;
+  list-style-type: none;
+  overflow: auto;
+  -webkit-mask-image: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(25, 25, 25) 80%, rgba(255, 255, 255, 0) 100%);
+  scrollbar-gutter: gutter;
+  scrollbar-width: thin;
+  scrollbar-color: #7c7c7c;
 }
-.money-saver-container .amounts-list .heading {
-  font-size: 18px;
+.money-saver-main-container .money-saver-app .app-element .list .list-element {
+  display: flex;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  background-color: #f2f8ff;
+  align-items: center;
+}
+.money-saver-main-container .money-saver-app .app-element .list .list-element .name {
   font-weight: 600;
+  font-size: 0.9rem;
+  padding-right: 0.4rem;
+}
+.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons {
+  display: flex;
+  gap: 0.3rem;
+  margin-left: auto;
+}
+.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button {
+  padding: 0.9rem;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  background-color: transparent;
+}
+.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button.edit-btn {
+  border: 1px solid #7c7c7c;
+  color: #7c7c7c;
+}
+.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button.remove-btn {
+  background-color: #df5e82;
+  color: #fff;
+}
+.money-saver-main-container .money-saver-app .app-element .sum {
+  margin-top: 2.7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.money-saver-main-container .money-saver-app .app-element .sum .font-bold {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 425px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 960px) {
+  .money-saver-main-container .money-saver-app {
+    display: grid;
+    max-width: 1170px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+  .money-saver-main-container .money-saver-app .savings-content {
+    margin: 0 auto;
+    grid-area: 1/1/2/3;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

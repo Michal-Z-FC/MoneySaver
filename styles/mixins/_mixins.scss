@@ -1,35 +1,35 @@
 @mixin small-phone {
-  @media screen and (max-width: $small-phones) {
+  @media screen and (min-width: $small-phones) {
     @content;
   }
 }
 
 @mixin medium-phone {
-  @media screen and (max-width: $medium-phones) {
+  @media screen and (min-width: $medium-phones) {
     @content;
   }
 }
 
 @mixin large-phone {
-  @media screen and (max-width: $large-phones) {
+  @media screen and (min-width: $large-phones) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media screen and (max-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media screen and (max-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     @content;
   }
 }
 
 @mixin large-desktop {
-  @media screen and (max-width: $desktop-large) {
+  @media screen and (min-width: $desktop-large) {
     @content;
   }
 }

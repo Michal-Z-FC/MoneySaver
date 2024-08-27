@@ -12,65 +12,121 @@
     <title>MoneySaver 2024</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
-  <body class="money-saver-body">
-    <div class="money-saver-container">
+  <body>
+    <div class="money-saver-main-container">
       <img
-        src="images/logo.svg"
-        width="100"
-        alt="Logotyp z pieniądzem oraz napisem MoneySaver"
+        width="150"
+        src="./images/logo.svg"
+        alt="Logotyp z kółkami i napisem MoneySaver"
         class="logotype"
       />
-      <div class="expense-summary">
-        <p class="expense-heading">Możesz jeszcze wydać:</p>
-        <p class="expense-value">987 zł</p>
-        <svg
-          width="23"
-          height="23"
-          viewBox="0 0 23 23"
-          fill="none"
-          class="triangle"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 5.07107C0 0.616543 5.38571 -1.61429 8.53553 1.53553L21.4645 14.4645C24.6143 17.6143 22.3835 23 17.9289 23H5C2.23858 23 0 20.7614 0 18V5.07107Z"
-          />
-        </svg>
-      </div>
-      <div class="amounts-list">
-        <p class="heading">Przychody</p>
-        <div class="inputs-container">
-          <input type="text" placeholder="Pochodzenie przychodu" />
-          <input type="text" placeholder="Kwota" />
-          <button class="add-btn">Dodaj</button>
+      <div class="money-saver-app">
+        <div class="savings-content">
+          <p class="heading">Możesz jeszcze wydać:</p>
+          <p class="value">987 zł</p>
+          <div class="emojis">
+            <img
+              src="./images/sad_emoji.svg"
+              class="emoji sad-emoji"
+              src="Emotka oznaczająca zasmucenie"
+            />
+            <img
+              src="./images/smile_emoji.svg"
+              class="emoji smile-emoji"
+              src="Emotka oznaczająca uśmiech"
+            />
+          </div>
         </div>
-        <ul class="list">
-          <li class="list-item">
-            <span class="item-heading">Pensja - 3000 zł</span>
-            <button class="edit-btn">Edytuj</button>
-            <button class="remove-btn">Usuń</button>
-          </li>
-        </ul>
-        <p class="sum-content">
-          Suma przychodów: <span class="sum">5500 zł</span>
-        </p>
-      </div>
-      <div class="amounts-list">
-        <p class="heading">Wydatki</p>
-        <div class="inputs-container">
-          <input type="text" placeholder="Pochodzenie wydatku" />
-          <input type="text" placeholder="Kwota" />
-          <button class="add-btn">Dodaj</button>
+        <div class="app-element revenues">
+          <p class="element-heading">Przychody</p>
+          <div class="element-form">
+            <input
+              type="text"
+              placeholder="Nazwa przychodu"
+              class="name-input"
+            />
+            <input type="text" placeholder="Kwota" class="value-input" />
+            <button class="add-to-list-btn">Dodaj</button>
+          </div>
+          <div class="separator"></div>
+          <ul class="list">
+            <li class="list-element">
+              <p class="name">
+                Pensja - 3000 zł sada sdasd asdasdasd sadas sadasd adsas dasdads
+              </p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+          </ul>
+          <p class="sum">
+            Suma przychodów: <span class="font-bold">5500 zł</span>
+          </p>
         </div>
-        <ul class="list">
-          <li class="list-item">
-            <span class="item-heading">Pensja - 3000 zł</span>
-            <button class="edit-btn">Edytuj</button>
-            <button class="remove-btn">Usuń</button>
-          </li>
-        </ul>
-        <p class="sum-content">
-          Suma przychodów: <span class="sum">5500 zł</span>
-        </p>
+        <div class="app-element expenses">
+          <p class="element-heading">Wydatki</p>
+          <div class="element-form">
+            <input type="text" placeholder="Nazwa wydatku" class="name-input" />
+            <input type="text" placeholder="Kwota" class="value-input" />
+            <button class="add-to-list-btn">Dodaj</button>
+          </div>
+          <div class="separator"></div>
+          <ul class="list">
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+            <li class="list-element">
+              <p class="name">Pensja - 3000 zł</p>
+              <div class="buttons">
+                <button class="edit-btn">Edytuj</button>
+                <button class="remove-btn">Usuń</button>
+              </div>
+            </li>
+          </ul>
+          <p class="sum">
+            Suma wydatków: <span class="font-bold">5500 zł</span>
+          </p>
+        </div>
       </div>
     </div>
   </body>
