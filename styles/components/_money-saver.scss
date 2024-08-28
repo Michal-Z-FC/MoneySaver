@@ -49,7 +49,7 @@ $tile-border-radius: 14px;
 
         .emojis {
             position: absolute;
-            width: 70px;
+            width: 4rem;
             top: -1.6rem;
             right: 1rem;
 
@@ -107,6 +107,7 @@ $tile-border-radius: 14px;
                 border-radius: $tile-border-radius;
                 font-size: $tiny-heading;
                 color: $dark-grey;
+                transition: border-color .3s;
 
                 &.name-input {
                     grid-area: 1 / 1 / 2 / 5;
@@ -114,6 +115,10 @@ $tile-border-radius: 14px;
     
                 &.value-input {
                     grid-area: 1 / 5 / 2 / 7;
+                }
+
+                &.error {
+                    border-color: $warning-color;
                 }
             }
 
@@ -143,7 +148,6 @@ $tile-border-radius: 14px;
             height: calc(15 * 1.2rem);
             list-style-type: none;
             overflow: auto;
-            -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(25,25,25,1) 80%, rgba(255,255,255,0) 100%);
             scrollbar-gutter: gutter;
             scrollbar-width: thin;
             scrollbar-color: $dark-grey;
@@ -156,6 +160,10 @@ $tile-border-radius: 14px;
                 border-radius: $tile-border-radius;
                 background-color: $main-bg-color;
                 align-items: center;
+                
+                &.fade-in {
+                    animation: fadeIn .7s forwards ease-in;
+                }
 
                 .name {
                     font-weight: 600;
@@ -202,6 +210,79 @@ $tile-border-radius: 14px;
         }
     }
   }
+
+  .notifications {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 60%;
+    max-width: 300px;
+    height: 100vh;
+    padding: 200px 0 0 1rem;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+    .notification-tile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2rem;
+        height: 100%;
+        max-height: 70px;
+        border-radius: $tile-border-radius;
+        background-color: rgba($warning-color, .8);
+        animation: fadeIn .5s forwards ease-in;
+        font-size: $tiny-heading;
+        font-weight: bold;
+        color: #fff;
+        pointer-events: auto;
+
+        &.fade-out {
+            animation: fadeOut .5s forwards ease-out;
+
+            @keyframes fadeOut {
+                0% {
+                    transform: translateX(0);
+                }
+
+                20% {
+                    transform: translateX(10px);
+                }
+
+                70% {
+                    max-height: 70px;
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+
+                100% {
+                    max-height: 0;
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+  }
+
+@keyframes fadeIn {
+    0% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(10%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(-5%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 }
 
 @include medium-phone {
