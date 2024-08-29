@@ -241,7 +241,7 @@ function updateSum() {
   revenuesSum.textContent = sumForRevenues + " zł";
   expensesSum.textContent = sumForExpenses + " zł";
 
-  const savings = parseFloat(sumForRevenues - sumForExpenses);
+  const savings = parseFloat(sumForRevenues - sumForExpenses).toFixed(2);
   updateSavings(savings);
 }
 
