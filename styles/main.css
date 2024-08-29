@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   line-height: 1.4;
   font-weight: normal;
   font-family: "Inter", sans-serif;
@@ -63,6 +64,7 @@ body button:focus, body button:active, body button:hover {
   display: flex;
   width: 100%;
   max-width: 425px;
+  height: 130px;
   padding: 1.7rem 2.7rem 1.3rem;
   flex-direction: column;
   gap: 10px;
