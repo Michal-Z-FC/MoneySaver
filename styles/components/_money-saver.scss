@@ -8,8 +8,8 @@ $tile-border-radius: 14px;
 
   .logotype {
     width: 250px;
-    padding: 3rem 0 2rem;
     margin: 0 auto;
+    padding: 3rem 0 2rem;
   }
 
   .money-saver-app {
@@ -23,286 +23,338 @@ $tile-border-radius: 14px;
     gap: 1rem;
 
     .savings-content {
-        position: relative;
-        display: flex;
-        width: 100%;
-        max-width: 425px;
-        flex-direction: column;
-        gap: 10px;
-        padding: 1.7rem 2.7rem 1.3rem;
-        border-radius: $border-radius;
-        background-image: linear-gradient(135deg, $primary-color, $auxiliary-color);
-        box-shadow: 0 0 20px 18px $box-shadow-color;
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 425px;
+      padding: 1.7rem 2.7rem 1.3rem;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: $border-radius;
+      box-shadow: 0 0 20px 18px $box-shadow-color;
+      background-image: linear-gradient(135deg, $primary-color, $auxiliary-color);
 
-        .heading {
-            font-size: $medium-heading;
-            font-weight: 500;
-            color: $main-bg-color;
-        }
+      .heading {
+        font-size: $medium-heading;
+        font-weight: 500;
+        color: $main-bg-color;
+      }
 
-        .value {
-            align-self: flex-end;
-            font-size: $large-heading;
-            font-weight: bold;
-            color: $main-bg-color;
-        }
+      .value {
+        align-self: flex-end;
+        font-size: $large-heading;
+        font-weight: bold;
+        color: $main-bg-color;
+      }
 
-        .emojis {
-            position: absolute;
-            width: 4rem;
-            top: -1.6rem;
-            right: 1rem;
+      .emojis {
+        position: absolute;
+        width: 4rem;
+        top: -1.6rem;
+        right: 1rem;
 
-            .emoji {
-                position: absolute;
-                width: 100%;
-                top:0;
-                left: 0;
-                transition: opacity .3s;
-                pointer-events: none;
+        .emoji {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          left: 0;
+          transition: opacity 0.3s;
+          pointer-events: none;
 
-                &.sad-emoji {
-                    opacity: 0;
+          &.sad-emoji {
+            opacity: 0;
 
-                    &.visible {
-                        opacity: 1;
-                    }
-                }
-
-                &.smile-emoji {
-                    opacity: 0;
-
-                    &.visible {
-                        opacity: 1;
-                    }
-                }
+            &.visible {
+              opacity: 1;
             }
+          }
+
+          &.smile-emoji {
+            opacity: 0;
+
+            &.visible {
+              opacity: 1;
+            }
+          }
         }
+      }
     }
 
     .app-element {
-        width: 100%;
-        max-width: 600px;
-        padding: 1.7rem 2rem;
-        border-radius: $border-radius;
-        box-shadow: 0 0 20px 18px $box-shadow-color;
-        background-color: #fff;
+      width: 100%;
+      max-width: 600px;
+      padding: 1.7rem 2rem;
+      border-radius: $border-radius;
+      box-shadow: 0 0 20px 18px $box-shadow-color;
+      background-color: #fff;
 
-        .element-heading {
-            padding-bottom: 1.7rem;
-            text-align: center;
-            font-size: $medium-heading;
-            font-weight: 800;
+      .element-heading {
+        padding-bottom: 1.7rem;
+        text-align: center;
+        font-size: $medium-heading;
+        font-weight: 800;
+      }
+
+      .element-form {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 0.4rem;
+
+        input {
+          padding: 1.1rem 0.8rem;
+          border: 1px solid $light-grey;
+          border-radius: $tile-border-radius;
+          font-size: $tiny-heading;
+          color: $dark-grey;
+          transition: border-color 0.3s;
+
+          &.name-input {
+            grid-area: 1 / 1 / 2 / 5;
+          }
+
+          &.value-input {
+            grid-area: 1 / 5 / 2 / 7;
+          }
+
+          &.error {
+            border-color: $warning-color;
+          }
+
+          &:focus,
+          &:active {
+            border-color: $primary-color;
+          }
         }
 
-        .element-form {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: .4rem;
+        .add-to-list-btn {
+          grid-area: 2 / 1 / 3 / 7;
+          padding: 1.1rem 0.8rem;
+          border: 0;
+          border-radius: $tile-border-radius;
+          background-color: $primary-color;
+          font-weight: bold;
+          color: #fff;
+        }
+      }
+
+      .separator {
+        width: 100%;
+        height: 1px;
+        margin: 1.7rem 0;
+        background-color: $light-grey;
+      }
+
+      .list {
+        display: flex;
+        height: calc(15 * 1.2rem);
+        padding: 0 0.5rem 0.5rem 0;
+        flex-direction: column;
+        gap: 0.4rem;
+        overflow: auto;
+        list-style-type: none;
+        scrollbar-gutter: gutter;
+        scrollbar-width: thin;
+        scrollbar-color: $dark-grey;
+
+        .list-element {
+          display: flex;
+          width: 100%;
+          padding: 0.8rem 1rem;
+          align-items: center;
+          border-radius: $tile-border-radius;
+          background-color: $main-bg-color;
+
+          &.fade-in {
+            animation: fadeIn 0.7s forwards ease-in;
+          }
+
+          .name {
+            padding-right: 0.4rem;
+            word-break: break-word;
+            font-weight: 600;
+            font-size: $small-heading;
+          }
+
+          .buttons {
+            display: flex;
+            margin-left: auto;
+            gap: 0.3rem;
+
+            button {
+              padding: 0.9rem;
+              border: none;
+              border-radius: 0.8rem;
+              background-color: transparent;
+              font-size: $tiny-heading;
+              font-weight: 600;
+
+              &.edit-btn {
+                border: 1px solid $dark-grey;
+                color: $dark-grey;
+              }
+
+              &.remove-btn {
+                background-color: $warning-color;
+                color: #fff;
+              }
+            }
+          }
+
+          &.edited {
+            display: flex;
+            padding: 0.8rem 0.6rem;
+            gap: 0.4rem;
 
             input {
-                padding: 1.1rem .8rem;
-                border: 1px solid $light-grey;
-                border-radius: $tile-border-radius;
-                font-size: $tiny-heading;
-                color: $dark-grey;
-                transition: border-color .3s;
+              padding: 0.9rem 0.5rem;
+              border: 1px solid $dark-grey;
+              border-radius: 0.8rem;
+              background-color: #fff;
+              font-size: $tiny-heading;
 
-                &.name-input {
-                    grid-area: 1 / 1 / 2 / 5;
-                }
-    
-                &.value-input {
-                    grid-area: 1 / 5 / 2 / 7;
-                }
+              &.new-name {
+                width: 45%;
+              }
 
-                &.error {
-                    border-color: $warning-color;
-                }
+              &.new-value {
+                width: 30%;
+              }
+
+              &.error {
+                border-color: $warning-color;
+              }
+
+              &:focus,
+              &:active {
+                border-color: $primary-color;
+              }
             }
 
-            .add-to-list-btn {
-                grid-area: 2 / 1 / 3 / 7;
-                padding: 1.1rem .8rem;
-                border-radius: $tile-border-radius;
-                border: 0;
-                font-weight: bold;
-                color: #fff;
-                background-color: $primary-color;
+            button {
+              width: 12.5%;
+              height: 100%;
+              border: none;
+              border-radius: 0.8rem;
+
+              &.accept {
+                background: $primary-color url("../../images/accept.svg") no-repeat center center/cover;
+              }
+
+              &.decline {
+                background: $warning-color url("../../images/decline.svg") no-repeat center center/cover;
+              }
             }
+          }
         }
+      }
 
-        .separator {
-            width: 100%;
-            height: 1px;
-            margin: 1.7rem 0;
-            background-color: $light-grey;
+      .sum {
+        margin-top: 2.7rem;
+        text-align: center;
+        font-size: $medium-heading;
+        font-weight: 500;
+
+        .font-bold {
+          font-weight: bold;
         }
-
-        .list {
-            display: flex;
-            flex-direction: column;
-            padding: 0 .5rem .5rem 0;
-            gap: .4rem;
-            height: calc(15 * 1.2rem);
-            list-style-type: none;
-            overflow: auto;
-            scrollbar-gutter: gutter;
-            scrollbar-width: thin;
-            scrollbar-color: $dark-grey;
-
-
-            .list-element {
-                display: flex;
-                width: 100%;
-                padding: .8rem 1rem;
-                border-radius: $tile-border-radius;
-                background-color: $main-bg-color;
-                align-items: center;
-                
-                &.fade-in {
-                    animation: fadeIn .7s forwards ease-in;
-                }
-
-                .name {
-                    font-weight: 600;
-                    font-size: $small-heading;
-                    padding-right: .4rem;
-                }
-
-                .buttons {
-                    display: flex;
-                    gap: .3rem;
-                    margin-left: auto;
-                    
-                    button {
-                        padding: .9rem;
-                        border-radius: .8rem;
-                        font-size: $tiny-heading;
-                        font-weight: 600;
-                        border: none;
-                        background-color: transparent;
-
-                        &.edit-btn {
-                            border: 1px solid $dark-grey;
-                            color: $dark-grey;
-                        }
-
-                        &.remove-btn {
-                            background-color: $warning-color;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .sum {
-            margin-top: 2.7rem;
-            text-align: center;
-            font-size: $medium-heading;
-            font-weight: 500;
-
-            .font-bold {
-                font-weight: bold;
-            }
-        }
+      }
     }
   }
 
   .notifications {
     position: fixed;
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
     width: 60%;
     max-width: 300px;
     height: 100vh;
     padding: 200px 0 0 1rem;
     top: 0;
     left: 0;
+    flex-direction: column;
+    gap: 1rem;
     pointer-events: none;
 
     .notification-tile {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 2rem;
-        height: 100%;
-        max-height: 70px;
-        border-radius: $tile-border-radius;
-        background-color: rgba($warning-color, .8);
-        animation: fadeIn .5s forwards ease-in;
-        font-size: $tiny-heading;
-        font-weight: bold;
-        color: #fff;
-        pointer-events: auto;
+      display: flex;
+      max-height: 70px;
+      height: 100%;
+      padding: 0 2rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: $tile-border-radius;
+      background-color: rgba($warning-color, 0.8);
+      font-size: $tiny-heading;
+      font-weight: bold;
+      color: #fff;
+      animation: fadeIn 0.5s forwards ease-in;
+      pointer-events: auto;
+      cursor: pointer;
 
-        &.fade-out {
-            animation: fadeOut .5s forwards ease-out;
+      &.fade-out {
+        animation: fadeOut 0.5s forwards ease-out;
 
-            @keyframes fadeOut {
-                0% {
-                    transform: translateX(0);
-                }
+        @keyframes fadeOut {
+          0% {
+            transform: translateX(0);
+          }
 
-                20% {
-                    transform: translateX(10px);
-                }
+          20% {
+            transform: translateX(10px);
+          }
 
-                70% {
-                    max-height: 70px;
-                    transform: translateX(-100%);
-                    opacity: 0;
-                }
+          70% {
+            max-height: 70px;
+            transform: translateX(-100%);
+            opacity: 0;
+          }
 
-                100% {
-                    max-height: 0;
-                    transform: translateX(-100%);
-                    opacity: 0;
-                }
-            }
+          100% {
+            max-height: 0;
+            transform: translateX(-100%);
+            opacity: 0;
+          }
         }
+      }
     }
   }
 
-@keyframes fadeIn {
+  @keyframes fadeIn {
     0% {
-        transform: translateX(-50%);
-        opacity: 0;
+      transform: translateX(-50%);
+      opacity: 0;
     }
     60% {
-        transform: translateX(10%);
-        opacity: 1;
+      transform: translateX(10%);
+      opacity: 1;
     }
     80% {
-        transform: translateX(-5%);
+      transform: translateX(-5%);
     }
     100% {
-        transform: translateX(0);
+      transform: translateX(0);
     }
-}
+  }
 }
 
 @include medium-phone {
-    html {
-        font-size: 14px;
-    }
+  html {
+    font-size: 14px;
+  }
 }
 
 @include tablet {
-    .money-saver-main-container {
-        .money-saver-app {
-            display: grid;
-            max-width: 1170px;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, auto);
+  .money-saver-main-container {
+    .money-saver-app {
+      display: grid;
+      max-width: 1170px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
 
-            .savings-content {
-                margin: 0 auto;
-                grid-area: 1 / 1 / 2 / 3;
-            }
-        }
+      .savings-content {
+        margin: 0 auto;
+        grid-area: 1 / 1 / 2 / 3;
+      }
     }
+  }
 }

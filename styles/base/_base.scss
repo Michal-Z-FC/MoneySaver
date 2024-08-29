@@ -10,19 +10,37 @@
 }
 
 html {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 body {
+  line-height: 1.4;
   font-weight: normal;
   font-family: "Inter", sans-serif;
   color: $default-font-color;
+  -webkit-tap-highlight-color: transparent;
 
   img {
     display: block;
+    user-select: none;
+    pointer-events: none;
   }
 
   button {
     cursor: pointer;
+  }
+
+  input {
+    outline: none;
+  }
+  button {
+    transition: filter 0.3s;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      filter: brightness(90%);
+    }
   }
 }
