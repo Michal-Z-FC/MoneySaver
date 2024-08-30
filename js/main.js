@@ -323,8 +323,8 @@ function updateSum() {
     sumForExpenses += childValue;
   });
 
-  revenuesSum.textContent = sumForRevenues + " zł";
-  expensesSum.textContent = sumForExpenses + " zł";
+  revenuesSum.textContent = parseFloat(sumForRevenues).toFixed(2) + " zł";
+  expensesSum.textContent = parseFloat(sumForExpenses).toFixed(2) + " zł";
 
   const savings = parseFloat(sumForRevenues - sumForExpenses).toFixed(2);
   updateSavings(savings);
