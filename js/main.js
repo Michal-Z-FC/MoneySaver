@@ -150,12 +150,12 @@ function editListItem(item) {
   declineBtn.addEventListener("click", () => {
     copyItem.classList.remove("fade-in");
 
-    newItem.querySelector(".edit-btn").addEventListener("click", (e) => {
+    item.querySelector(".edit-btn").addEventListener("click", (e) => {
       const listElement = e.target.parentNode.parentNode;
       editListItem(listElement);
     });
 
-    newItem.querySelector(".remove-btn").addEventListener("click", (e) => {
+    item.querySelector(".remove-btn").addEventListener("click", (e) => {
       e.target.parentNode.parentNode.remove();
       updateSum();
       updateStorage();
