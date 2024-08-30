@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -44,12 +43,14 @@ body button:focus, body button:active, body button:hover {
   min-height: 100vh;
   background-color: #f2f8ff;
 }
-.money-saver-main-container .logotype {
+
+.logotype {
   width: 250px;
   margin: 0 auto;
   padding: 3rem 0 2rem;
 }
-.money-saver-main-container .money-saver-app {
+
+.money-saver-app {
   display: flex;
   width: 100%;
   max-width: 768px;
@@ -59,37 +60,46 @@ body button:focus, body button:active, body button:hover {
   align-items: center;
   gap: 1rem;
 }
-.money-saver-main-container .money-saver-app .savings-content {
+
+.savings-content {
   position: relative;
   display: flex;
   width: 100%;
   max-width: 425px;
   height: 130px;
-  padding: 1.7rem 2.7rem 1.3rem;
+  padding: 1.7rem 2.7rem;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   border-radius: 35px;
   box-shadow: 0 0 20px 18px rgba(0, 0, 0, 0.0392156863);
   background-image: linear-gradient(135deg, #378ce7, #81bdff);
 }
-.money-saver-main-container .money-saver-app .savings-content .heading {
+
+.heading {
   font-size: 1.2rem;
   font-weight: 500;
   color: #f2f8ff;
 }
-.money-saver-main-container .money-saver-app .savings-content .value {
+
+.value {
   align-self: flex-end;
   font-size: 2.6rem;
   font-weight: bold;
   color: #f2f8ff;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis {
+.value.smaller-font {
+  font-size: 1.8rem;
+}
+
+.emojis {
   position: absolute;
   width: 4rem;
   top: -1.6rem;
   right: 1rem;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis .emoji {
+
+.emoji {
   position: absolute;
   width: 100%;
   top: 0;
@@ -97,19 +107,20 @@ body button:focus, body button:active, body button:hover {
   transition: opacity 0.3s;
   pointer-events: none;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.sad-emoji {
+.emoji.sad-emoji {
   opacity: 0;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.sad-emoji.visible {
+.emoji.sad-emoji.visible {
   opacity: 1;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.smile-emoji {
+.emoji.smile-emoji {
   opacity: 0;
 }
-.money-saver-main-container .money-saver-app .savings-content .emojis .emoji.smile-emoji.visible {
+.emoji.smile-emoji.visible {
   opacity: 1;
 }
-.money-saver-main-container .money-saver-app .app-element {
+
+.app-element {
   width: 100%;
   max-width: 600px;
   padding: 1.7rem 2rem;
@@ -117,19 +128,22 @@ body button:focus, body button:active, body button:hover {
   box-shadow: 0 0 20px 18px rgba(0, 0, 0, 0.0392156863);
   background-color: #fff;
 }
-.money-saver-main-container .money-saver-app .app-element .element-heading {
+
+.element-heading {
   padding-bottom: 1.7rem;
   text-align: center;
   font-size: 1.2rem;
   font-weight: 800;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form {
+
+.element-form {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 0.4rem;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form input {
+
+input {
   padding: 1.1rem 0.8rem;
   border: 1px solid #c7c7c7;
   border-radius: 14px;
@@ -137,19 +151,20 @@ body button:focus, body button:active, body button:hover {
   color: #7c7c7c;
   transition: border-color 0.3s;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form input.name-input {
+input.name-input {
   grid-area: 1/1/2/5;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form input.value-input {
+input.value-input {
   grid-area: 1/5/2/7;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form input.error {
+input.error {
   border-color: #df5e82;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form input:focus, .money-saver-main-container .money-saver-app .app-element .element-form input:active {
+input:focus, input:active {
   border-color: #378ce7;
 }
-.money-saver-main-container .money-saver-app .app-element .element-form .add-to-list-btn {
+
+.add-to-list-btn {
   grid-area: 2/1/3/7;
   padding: 1.1rem 0.8rem;
   border: 0;
@@ -158,13 +173,15 @@ body button:focus, body button:active, body button:hover {
   font-weight: bold;
   color: #fff;
 }
-.money-saver-main-container .money-saver-app .app-element .separator {
+
+.separator {
   width: 100%;
   height: 1px;
   margin: 1.7rem 0;
   background-color: #c7c7c7;
 }
-.money-saver-main-container .money-saver-app .app-element .list {
+
+.list {
   display: flex;
   height: 18rem;
   padding: 0 0.5rem 0.5rem 0;
@@ -176,7 +193,8 @@ body button:focus, body button:active, body button:hover {
   scrollbar-width: thin;
   scrollbar-color: #7c7c7c;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element {
+
+.list-element {
   display: flex;
   width: 100%;
   padding: 0.8rem 1rem;
@@ -184,21 +202,64 @@ body button:focus, body button:active, body button:hover {
   border-radius: 14px;
   background-color: #f2f8ff;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element.fade-in {
+.list-element.fade-in {
   animation: fadeIn 0.7s forwards ease-in;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element .name {
+.list-element.edited {
+  padding: 0.8rem 0.6rem;
+}
+.list-element.edited .edit-form {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 0.4rem;
+}
+.list-element.edited input {
+  padding: 0.9rem 0.5rem;
+  border: 1px solid #7c7c7c;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  font-size: 0.8rem;
+}
+.list-element.edited input.new-name {
+  width: 45%;
+}
+.list-element.edited input.new-value {
+  width: 30%;
+}
+.list-element.edited input.error {
+  border-color: #df5e82;
+}
+.list-element.edited input:focus, .list-element.edited input:active {
+  border-color: #378ce7;
+}
+.list-element.edited button {
+  width: 12.5%;
+  height: 100%;
+  border: none;
+  border-radius: 0.8rem;
+}
+.list-element.edited button.accept {
+  background: #378ce7 url("../../images/accept.svg") no-repeat center center/cover;
+}
+.list-element.edited button.decline {
+  background: #df5e82 url("../../images/decline.svg") no-repeat center center/cover;
+}
+
+.name {
   padding-right: 0.4rem;
   word-break: break-word;
   font-weight: 600;
   font-size: 0.9rem;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons {
+
+.buttons {
   display: flex;
   margin-left: auto;
   gap: 0.3rem;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button {
+
+button {
   padding: 0.9rem;
   border: none;
   border-radius: 0.8rem;
@@ -206,60 +267,27 @@ body button:focus, body button:active, body button:hover {
   font-size: 0.8rem;
   font-weight: 600;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button.edit-btn {
+button.edit-btn {
   border: 1px solid #7c7c7c;
   color: #7c7c7c;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element .buttons button.remove-btn {
+button.remove-btn {
   background-color: #df5e82;
   color: #fff;
 }
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited {
-  display: flex;
-  padding: 0.8rem 0.6rem;
-  gap: 0.4rem;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited input {
-  padding: 0.9rem 0.5rem;
-  border: 1px solid #7c7c7c;
-  border-radius: 0.8rem;
-  background-color: #fff;
-  font-size: 0.8rem;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited input.new-name {
-  width: 45%;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited input.new-value {
-  width: 30%;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited input.error {
-  border-color: #df5e82;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited input:focus, .money-saver-main-container .money-saver-app .app-element .list .list-element.edited input:active {
-  border-color: #378ce7;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited button {
-  width: 12.5%;
-  height: 100%;
-  border: none;
-  border-radius: 0.8rem;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited button.accept {
-  background: #378ce7 url("../../images/accept.svg") no-repeat center center/cover;
-}
-.money-saver-main-container .money-saver-app .app-element .list .list-element.edited button.decline {
-  background: #df5e82 url("../../images/decline.svg") no-repeat center center/cover;
-}
-.money-saver-main-container .money-saver-app .app-element .sum {
+
+.sum {
   margin-top: 2.7rem;
   text-align: center;
   font-size: 1.2rem;
   font-weight: 500;
 }
-.money-saver-main-container .money-saver-app .app-element .sum .font-bold {
+
+.font-bold {
   font-weight: bold;
 }
-.money-saver-main-container .notifications {
+
+.notifications {
   position: fixed;
   display: flex;
   width: 60%;
@@ -272,7 +300,8 @@ body button:focus, body button:active, body button:hover {
   gap: 1rem;
   pointer-events: none;
 }
-.money-saver-main-container .notifications .notification-tile {
+
+.notification-tile {
   display: flex;
   max-height: 70px;
   height: 100%;
@@ -288,8 +317,25 @@ body button:focus, body button:active, body button:hover {
   pointer-events: auto;
   cursor: pointer;
 }
-.money-saver-main-container .notifications .notification-tile.fade-out {
+.notification-tile.fade-out {
   animation: fadeOut 0.5s forwards ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(10%);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 @keyframes fadeOut {
   0% {
@@ -309,36 +355,19 @@ body button:focus, body button:active, body button:hover {
     opacity: 0;
   }
 }
-@keyframes fadeIn {
-  0% {
-    transform: translateX(-50%);
-    opacity: 0;
-  }
-  60% {
-    transform: translateX(10%);
-    opacity: 1;
-  }
-  80% {
-    transform: translateX(-5%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 @media screen and (min-width: 425px) {
   html {
     font-size: 14px;
   }
 }
 @media screen and (min-width: 960px) {
-  .money-saver-main-container .money-saver-app {
+  .money-saver-app {
     display: grid;
     max-width: 1170px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
   }
-  .money-saver-main-container .money-saver-app .savings-content {
+  .savings-content {
     margin: 0 auto;
     grid-area: 1/1/2/3;
   }

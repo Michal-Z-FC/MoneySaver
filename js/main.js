@@ -1,49 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
-  appEvents();
   generateItems();
   updateSum();
+  formEvents("#revenues-form");
+  formEvents("#expenses-form");
 });
 
-function appEvents() {
-  const appElements = document.querySelectorAll(".money-saver-app .app-element");
+function formEvents(formID) {
+  const form = document.querySelector(formID);
 
-  appElements.forEach((element) => {
-    element.addEventListener("click", (e) => {
-      if (e.target.classList.contains("add-to-list-btn")) {
-        const nameInput = e.currentTarget.querySelector(".name-input");
-        const valueInput = e.currentTarget.querySelector(".value-input");
-        const isNameInputValidate = validateInput(nameInput, "name");
-        const isValueInputValidate = validateInput(valueInput, "value");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = Array.from(new FormData(form).entries());
+    const name = formData[0][1];
+    const value = formData[1][1];
+    const isNameValid = validateInput(name, "name");
+    const isValueValid = validateInput(value, "value");
+    const nameInput = form.querySelector('[id$="-name-input"]');
+    const valueInput = form.querySelector('[id$="-value-input"]');
+    const newItem = createItem(name, value, true);
+    const itemsList = form.parentNode.querySelector('[id$="-list"]');
 
-        if (isNameInputValidate && isValueInputValidate) {
-          const newItem = createItem(nameInput.value, valueInput.value, true);
-          e.currentTarget.querySelector(".list").prepend(newItem);
-          nameInput.value = "";
-          valueInput.value = "";
-          updateSum();
-          updateStorage();
-        }
-      }
-
-      if (e.target.classList.contains("edit-btn")) {
-        const listItem = e.target.closest(".list-element");
-        editListItem(listItem);
-      }
-
-      if (e.target.classList.contains("remove-btn")) {
-        e.target.closest(".list-element").remove();
-        updateSum();
-        updateStorage();
-      }
-    });
+    if (isNameValid && isValueValid) {
+      nameInput.classList.remove("error");
+      valueInput.classList.remove("error");
+      itemsList.prepend(newItem);
+      updateSum();
+      updateStorage();
+      form.reset();
+    } else if (!isNameValid && isValueValid) {
+      nameInput.classList.add("error");
+      valueInput.classList.remove("error");
+    } else if (!isValueValid && isNameValid) {
+      nameInput.classList.remove("error");
+      valueInput.classList.add("error");
+    } else {
+      nameInput.classList.add("error");
+      valueInput.classList.add("error");
+    }
   });
 }
 
-function validateInput(input, type) {
+function validateInput(value, type) {
   const maxLength = {
     name: 100,
     value: 15,
   };
+
+  const valueSize = 0.01;
 
   const errorMessages = {
     name: {
@@ -55,37 +58,42 @@ function validateInput(input, type) {
       empty: "Nie wypełniono pola z kwotą!",
       invalid: "Użyto niedozwolonych znaków w kwocie!",
       length: `Podano zbyt dużą kwotę (max ${maxLength[type]} znaków)!`,
+      size: "Podana wartość kwoty jest mniejsza od 0.01!",
     },
   };
 
   const regexPatterns = {
     name: /^[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ,.\-()!?:\s]*$/,
-    value: /^\s*\d+(\s*\d*)*([\.,]\s*\d*)*\s*$/,
+    value: /^\s*\d+(\s*\d+)*(\s*[.,]\s*\d+(\s*\d+)*)?$/,
   };
 
-  if (input.value.trim() === "") {
+  if (value.trim() === "") {
     createNotification(errorMessages[type].empty);
-    input.classList.add("error");
     return false;
   }
 
-  if (!regexPatterns[type].test(input.value)) {
+  if (!regexPatterns[type].test(value)) {
     createNotification(errorMessages[type].invalid);
-    input.classList.add("error");
+
     return false;
   }
 
-  if (input.value.length > maxLength[type]) {
+  if (value.length > maxLength[type]) {
     createNotification(errorMessages[type].length);
-    input.classList.add("error");
     return false;
   }
 
-  input.classList.remove("error");
+  if (type === "value") {
+    if (convertValue(value) < valueSize) {
+      createNotification(errorMessages[type].size);
+      return false;
+    }
+  }
+
   return true;
 
   function createNotification(text) {
-    const notificationsContainer = document.querySelector(".money-saver-main-container .notifications");
+    const notificationsContainer = document.querySelector("#notifications");
 
     if (![...notificationsContainer.children].some((child) => child.textContent === text)) {
       const notificationTile = document.createElement("div");
@@ -113,65 +121,115 @@ function editListItem(item) {
   const copyItem = item.cloneNode(true);
 
   item.classList.add("edited");
-  item.innerHTML = `
-                    <input type="text" class="new-name" placeholder="Nowa nazwa"/>
-                    <input type="text" class="new-value" placeholder="Nowa kwota"/>
-                    <button class="accept"></button>
-                    <button class="decline"</button>
-                    `;
+  item.innerHTML = "";
 
-  item.querySelector(".new-name").value = copyItem.dataset.name;
-  item.querySelector(".new-value").value = copyItem.dataset.value;
+  const form = document.createElement("form");
+  form.className = "edit-form";
 
-  item.addEventListener("click", (e) => {
-    if (e.target.classList.contains("accept")) {
-      const newName = e.currentTarget.querySelector(".new-name");
-      const newValue = e.currentTarget.querySelector(".new-value");
-      const isNewNameValid = validateInput(newName, "name");
-      const isNewValueValid = validateInput(newValue, "value");
+  const newInputName = document.createElement("input");
+  newInputName.type = "text";
+  newInputName.placeholder = "Nazwa";
+  newInputName.name = "new-name-input";
+  newInputName.className = "new-name";
+  newInputName.value = copyItem.dataset.name;
 
-      if (isNewNameValid && isNewValueValid) {
-        const newItem = copyItem;
-        const convertedValue = convertValue(newValue.value);
-        newItem.querySelector(".name").textContent = `${newName.value} - ${convertedValue} zł`;
-        newItem.dataset.value = convertedValue;
-        newItem.dataset.name = newName.value;
-        newItem.classList.remove("fade-in");
-        item.replaceWith(newItem);
+  const newInputValue = document.createElement("input");
+  newInputValue.type = "text";
+  newInputValue.placeholder = "Kwota";
+  newInputValue.name = "new-value-input";
+  newInputValue.className = "new-value";
+  newInputValue.value = copyItem.dataset.value;
+
+  const acceptBtn = document.createElement("button");
+  acceptBtn.type = "submit";
+  acceptBtn.className = "accept";
+
+  const declineBtn = document.createElement("button");
+  declineBtn.className = "decline";
+
+  declineBtn.addEventListener("click", () => {
+    copyItem.classList.remove("fade-in");
+    item.replaceWith(copyItem);
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newFormData = Array.from(new FormData(form).entries());
+    const newName = newFormData[0][1];
+    const newValue = newFormData[1][1];
+    const isNewNameValid = validateInput(newName, "name");
+    const isNewValueValid = validateInput(newValue, "value");
+
+    if (isNewNameValid && isNewValueValid) {
+      newInputName.classList.remove("error");
+      newInputValue.classList.remove("error");
+
+      const newItem = copyItem;
+      const convertedValue = convertValue(newValue);
+      newItem.firstChild.textContent = `${newName} - ${convertedValue} zł`;
+      newItem.dataset.name = newName;
+      newItem.dataset.value = convertedValue;
+      newItem.classList.remove("fade-in");
+
+      newItem.querySelector(".edit-btn").addEventListener("click", (e) => {
+        const listElement = e.target.parentNode.parentNode;
+        editListItem(listElement);
+      });
+
+      newItem.querySelector(".remove-btn").addEventListener("click", (e) => {
+        e.target.parentNode.parentNode.remove();
         updateSum();
         updateStorage();
-      }
-    }
+      });
 
-    if (e.target.classList.contains("decline")) {
-      copyItem.classList.remove("fade-in");
-      item.replaceWith(copyItem);
+      item.replaceWith(newItem);
+
+      updateSum();
+      updateStorage();
+    } else if (!isNewNameValid && isNewValueValid) {
+      newInputName.classList.add("error");
+      newInputValue.classList.remove("error");
+    } else if (!isNewValueValid && isNewNameValid) {
+      newInputName.classList.remove("error");
+      newInputValue.classList.add("error");
+    } else {
+      newInputName.classList.add("error");
+      newInputValue.classList.add("error");
     }
   });
+
+  form.appendChild(newInputName);
+  form.appendChild(newInputValue);
+  form.appendChild(acceptBtn);
+  form.appendChild(declineBtn);
+
+  item.appendChild(form);
 }
 
 function updateSavings(value) {
-  const savingsContainer = document.querySelector(".money-saver-main-container .money-saver-app .savings-content");
-  const [savingsHeader, savingsValue, emojis] = [savingsContainer.querySelector(".heading"), savingsContainer.querySelector(".value"), savingsContainer.querySelector(".emojis")];
+  const savingsContainer = document.querySelector("#savings-content");
+  const savingsHeader = savingsContainer.querySelector(".heading");
+  const savingsValue = savingsContainer.querySelector(".value");
+  const emojis = savingsContainer.querySelector(".emojis");
 
   savingsValue.textContent = `${value} zł`;
   const isPositive = value > 0;
   const isNegative = value < 0;
-  const isToBig = value > 100000000;
-  const isToSmall = value < -100000000;
+  const isTooBig = value > 999999;
 
-  if (isToBig) {
-    savingsHeader.textContent = "Wartość jest zbyt duża!";
-    savingsValue.textContent = "∞";
-  } else if (isPositive && !isToBig) {
+  if (isPositive) {
     savingsHeader.textContent = "Możesz jeszcze wydać:";
-  } else if (isToSmall) {
-    savingsHeader.textContent = "Wartość jest zbyt mała!";
-    savingsValue.textContent = "∞";
-  } else if (isNegative && !isToSmall) {
+  } else if (isNegative) {
     savingsHeader.textContent = "Bilans jest ujemny. Jesteś na minusie:";
   } else {
     savingsHeader.textContent = "Bilans wynosi zero!";
+  }
+
+  if (isTooBig) {
+    savingsValue.classList.add("smaller-font");
+  } else {
+    savingsValue.classList.remove("smaller-font");
   }
 
   emojis.querySelector(".sad-emoji").classList.toggle("visible", isNegative);
@@ -180,27 +238,54 @@ function updateSavings(value) {
 
 function createItem(name, value, animation = false) {
   const convertedValue = convertValue(value);
-  const newItem = document.createElement("li");
-  const newItemContent = `<p class="name">${name} - ${convertedValue} zł</p>
-                          <div class="buttons">
-                            <button class="edit-btn">Edytuj</button>
-                            <button class="remove-btn">Usuń</button>
-                          </div>`;
 
-  newItem.classList.add("list-element");
+  const listItem = document.createElement("li");
+  listItem.className = "list-element";
+  listItem.dataset.value = convertedValue;
+  listItem.dataset.name = name;
+
   if (animation) {
-    newItem.classList.add("fade-in");
+    listItem.classList.add("fade-in");
   }
-  newItem.dataset.value = convertedValue;
-  newItem.dataset.name = name;
-  newItem.innerHTML = newItemContent;
 
-  return newItem;
+  const nameParagraph = document.createElement("p");
+  nameParagraph.className = "name";
+  nameParagraph.textContent = `${name} - ${convertedValue} zł`;
+
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.className = "buttons";
+
+  const editButton = document.createElement("button");
+  editButton.className = "edit-btn";
+  editButton.textContent = "Edytuj";
+
+  editButton.addEventListener("click", (e) => {
+    const listElement = e.target.parentNode.parentNode;
+    editListItem(listElement);
+  });
+
+  const removeButton = document.createElement("button");
+  removeButton.className = "remove-btn";
+  removeButton.textContent = "Usuń";
+
+  removeButton.addEventListener("click", (e) => {
+    e.target.parentNode.parentNode.remove();
+    updateSum();
+    updateStorage();
+  });
+
+  buttonsDiv.appendChild(editButton);
+  buttonsDiv.appendChild(removeButton);
+
+  listItem.appendChild(nameParagraph);
+  listItem.appendChild(buttonsDiv);
+
+  return listItem;
 }
 
 function generateItems() {
-  const revenuesList = document.querySelector(".money-saver-app .revenues .list");
-  const expensesList = document.querySelector(".money-saver-app .expenses .list");
+  const revenuesList = document.querySelector("#revenues-list");
+  const expensesList = document.querySelector("#expenses-list");
 
   const revenuesItemsList = JSON.parse(localStorage.getItem("revenuesItems"));
   const expensesItemsList = JSON.parse(localStorage.getItem("expensesItems"));
@@ -221,10 +306,10 @@ function generateItems() {
 }
 
 function updateSum() {
-  const revenuesSum = document.querySelector(".money-saver-app .revenues .sum .font-bold");
-  const expensesSum = document.querySelector(".money-saver-app .expenses .sum .font-bold");
-  const revenuesListChildren = document.querySelectorAll(".money-saver-app .revenues .list .list-element");
-  const expensesListChildren = document.querySelectorAll(".money-saver-app .expenses .list .list-element");
+  const revenuesSum = document.querySelector("#revenues .sum .font-bold");
+  const expensesSum = document.querySelector("#expenses .sum .font-bold");
+  const revenuesListChildren = document.querySelectorAll("#revenues .list .list-element");
+  const expensesListChildren = document.querySelectorAll("#expenses .list .list-element");
   let sumForRevenues = 0;
   let sumForExpenses = 0;
 
@@ -246,8 +331,8 @@ function updateSum() {
 }
 
 function updateStorage() {
-  const revenuesListChildren = document.querySelectorAll(".money-saver-app .revenues .list .list-element");
-  const expensesListChildren = document.querySelectorAll(".money-saver-app .expenses .list .list-element");
+  const revenuesListChildren = document.querySelectorAll("#revenues .list .list-element");
+  const expensesListChildren = document.querySelectorAll("#expenses .list .list-element");
   let revenuesArray = [];
   let expensesArray = [];
 
@@ -265,7 +350,6 @@ function updateStorage() {
 
 function convertValue(value) {
   value = value.replace(/\s+/g, "").replace(/,/g, ".");
-  value = parseFloat(value).toFixed(2);
-  value = parseFloat(value);
+  value = parseFloat(parseFloat(value).toFixed(2));
   return value;
 }

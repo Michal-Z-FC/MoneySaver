@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="MoneySaver to prosta i intuicyjna aplikacja do zarządzania swoimi zarobkami i wydatkami." />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;800&display=swap" rel="stylesheet" />
     <title>MoneySaver 2024</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
@@ -13,37 +16,37 @@
     <div class="money-saver-main-container">
       <img width="150" src="./images/logo.svg" alt="Logotyp z kółkami i napisem MoneySaver" class="logotype" />
       <div class="money-saver-app">
-        <div class="savings-content">
-          <p class="heading">Bilans wynosi zero!</p>
+        <header class="savings-content" id="savings-content">
+          <h1 class="heading">Bilans wynosi zero!</h1>
           <p class="value">0 zł</p>
           <div class="emojis">
             <img src="./images/sad_emoji.svg" class="emoji sad-emoji" alt="Emotka oznaczająca zasmucenie" />
             <img src="./images/smile_emoji.svg" class="emoji smile-emoji" alt="Emotka oznaczająca uśmiech" />
           </div>
-        </div>
-        <div class="app-element revenues">
-          <p class="element-heading">Przychody</p>
-          <div class="element-form">
-            <input type="text" placeholder="Nazwa przychodu" class="name-input" />
-            <input type="text" placeholder="Kwota" class="value-input" />
-            <button class="add-to-list-btn">Dodaj</button>
-          </div>
+        </header>
+        <section class="app-element revenues" id="revenues">
+          <h2 class="element-heading">Przychody</h2>
+          <form class="element-form" id="revenues-form">
+            <input type="text" placeholder="Nazwa przychodu" class="name-input" name="revenues-name-input" id="revenues-name-input" />
+            <input type="text" placeholder="Kwota" class="value-input" name="revenues-value-input" id="revenues-value-input" />
+            <button type="submit" class="add-to-list-btn">Dodaj</button>
+          </form>
           <div class="separator"></div>
-          <ul class="list"></ul>
+          <ul class="list" id="revenues-list"></ul>
           <p class="sum">Suma przychodów: <span class="font-bold">0 zł</span></p>
-        </div>
-        <div class="app-element expenses">
-          <p class="element-heading">Wydatki</p>
-          <div class="element-form">
-            <input type="text" placeholder="Nazwa wydatku" class="name-input" />
-            <input type="text" placeholder="Kwota" class="value-input" />
-            <button class="add-to-list-btn">Dodaj</button>
-          </div>
+        </section>
+        <section class="app-element expenses" id="expenses">
+          <h2 class="element-heading">Wydatki</h2>
+          <form class="element-form" id="expenses-form">
+            <input type="text" placeholder="Nazwa wydatku" class="name-input" name="expenses-name-input" id="expeneses-name-input" />
+            <input type="text" placeholder="Kwota" class="value-input" name="expeneses-value-input" id="expenses-value-input" />
+            <button type="submit" class="add-to-list-btn">Dodaj</button>
+          </form>
           <div class="separator"></div>
-          <ul class="list"></ul>
+          <ul class="list" id="expenses-list"></ul>
           <p class="sum">Suma wydatków: <span class="font-bold">0 zł</span></p>
-        </div>
-        <div class="notifications"></div>
+        </section>
+        <div class="notifications" id="notifications"></div>
       </div>
     </div>
 
